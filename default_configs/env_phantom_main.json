@@ -1,0 +1,11 @@
+{
+  "path": "",
+  "manager_file": "",
+  "base_hosts": [
+    {
+      "name": "Seed server",
+      "host": "https://explorer.phantom.org:8443"
+    }
+  ],
+  "peer_nodes": []
+}
