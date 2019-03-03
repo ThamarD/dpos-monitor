@@ -35,18 +35,8 @@ def check_all_nodes():
         results.append({"environment": "Lisk main", "messages": check_nodes("lisk_main", conf["lisk_main_hosts"])})
     if "lisk_test_hosts" in conf:
         results.append({"environment": "Lisk test", "messages": check_nodes("lisk_test", conf["lisk_test_hosts"])})
-    if "lwf_main_hosts" in conf:
-        results.append({"environment": "Lwf main", "messages": check_nodes("lwf_main", conf["lwf_main_hosts"])})
-    if "lwf_test_hosts" in conf:
-        results.append({"environment": "Lwf test", "messages": check_nodes("lwf_test", conf["lwf_test_hosts"])})
     if "onz_main_hosts" in conf:
         results.append({"environment": "Onz main", "messages": check_nodes("onz_main", conf["onz_main_hosts"])})
-    if "onz_test_hosts" in conf:
-        results.append({"environment": "Onz test", "messages": check_nodes("onz_test", conf["onz_test_hosts"])})
-    if "oxy_main_hosts" in conf:
-        results.append({"environment": "Oxy main", "messages": check_nodes("oxy_main", conf["oxy_main_hosts"])})
-    if "oxy_test_hosts" in conf:
-        results.append({"environment": "Oxy test", "messages": check_nodes("oxy_test", conf["oxy_test_hosts"])})
     if "qredit_main_hosts" in conf:
         results.append({"environment": "Qredit main", "messages": check_nodes("qredit_main", conf["qredit_main_hosts"])})
     if "ripa_main_hosts" in conf:
@@ -67,6 +57,13 @@ def check_all_nodes():
     if "swapblocks_main_hosts" in conf:
         results.append({"environment": "Swapblocks main",
                         "messages": check_nodes("swapblocks_main", conf["swapblocks_main_hosts"])})
+
+    if "phantom_main_hosts" in conf:
+        results.append({"environment": "Phantom main", "messages": check_nodes("phantom_main", conf["phantom_main_hosts"])})
+    if "ripav2_dev_hosts" in conf:
+        results.append({"environment": "RipaV2 dev", "messages": check_nodes("ripav2_dev", conf["ripav2_dev_hosts"])})
+    if "skelpy_main_hosts" in conf:
+        results.append({"environment": "Skelpy main", "messages": check_nodes("skelpy_main", conf["skelpy_main_hosts"])})
 
     complete_message = ""
     for result in results:
@@ -92,7 +89,7 @@ def check_nodes(environment, nodes_to_monitor):
         if environment.startswith("lisk"):
             status_result = check_lisk_status(environment_conf, nodes_to_monitor, conf)
             processed_status_results = check_lisk_status_nodes(status_result)
-        elif environment.startswith("qredit"):
+        elif environment.startswith("qredit") or environment.startswith("phantom") or environment.startswith("ripav2"):
             status_result = check_arkv2_status(environment_conf, nodes_to_monitor, conf)
             processed_status_results = check_arkv2_status_nodes(status_result)
         elif conf["check_block_height"] or conf["check_version"]:
